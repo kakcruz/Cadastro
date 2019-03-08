@@ -1,5 +1,13 @@
-#titulo{
-	color: #6a1396;
-	font-family: 'Open Sans', sans-serif;
+h3{
+	color: #7200ff;
+	font-family: 'Montserrat', sans-serif;
+	font-width: bold;
+	text-align: center
+}
+#container{
+	float: left;
+}
+#nome; endereço{
+	font-family: 'Montserrat', sans-serif;
 	text-align: center;
 }
