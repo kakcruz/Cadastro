@@ -1,6 +1,9 @@
 package com.agenda.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.agenda.model.Pessoa;
 import com.agenda.util.ConnectionFactory;
@@ -9,6 +12,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class PessoaDAO {
 
+	private static final String SQL = null;
 	private Connection connection;
 
 	public void cadastra(Pessoa pessoa) {
@@ -27,11 +31,59 @@ public class PessoaDAO {
 
 			stmt.execute();
 			stmt.close();
+			
+			buscarPessoas();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
+	}
+	
+	private void buscarPessoas() {
+		
+	}
+
+	public List<Pessoa> buscaPessoa(){
+		
+		try {
+			
+			this.connection = new ConnectionFactory().getConnection();
+			
+			java.sql.PreparedStatement stmt = this.connection.prepareStatement(SQL);
+			
+			List<Pessoa> pessoas = new ArrayList<Pessoa>();
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Pessoa pessoa = new Pessoa();
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setNome(rs.getString("email"));
+				pessoa.setNome(rs.getString("endereco"));
+				pessoa.setNome(rs.getString("telefone"));
+				pessoas.add(pessoa);
+				
+				
+				
+					
+			}
+			
+			stmt.close();
+			this.connection.close();
+			
+			System.out.println(pessoas);
+			
+			return pessoas;
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
