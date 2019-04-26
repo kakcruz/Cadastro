@@ -21,22 +21,13 @@ public class CadastraUsuarioService {
 	private PessoaDAO dao;
 		
 	
-   public void adicona(Pessoa pessoa){
-	   
-	   this.dao.adiciona(pessoa);
-	   
-	   System.out.println(buscaPessoa());
+   public void adicona(Pessoa pessoa){   
+	   this.dao.cadastra(pessoa);	   
    }
 	
-	
-	
-	
-	
-   public List<Pessoa> buscaPessoa(){
-	   
-	   PessoaDAO dao = new PessoaDAO();
-	   
-	   return dao.buscaPessoa();
+   
+   public List<Pessoa> buscaPessoas(){
+	   return this.dao.buscarPessoas();
    }
 
 

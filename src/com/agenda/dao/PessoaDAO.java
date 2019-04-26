@@ -31,7 +31,7 @@ public class PessoaDAO {
 
 			stmt.execute();
 			stmt.close();
-			
+
 			buscarPessoas();
 
 		} catch (SQLException e) {
@@ -39,48 +39,39 @@ public class PessoaDAO {
 		}
 
 	}
-	
-	private void buscarPessoas() {
-		
-	}
 
-	public List<Pessoa> buscaPessoa(){
-		
+	public List<Pessoa> buscarPessoas() {
+
+		String SQL = "select * from pessoas";
+
 		try {
-			
+
 			this.connection = new ConnectionFactory().getConnection();
-			
+
 			java.sql.PreparedStatement stmt = this.connection.prepareStatement(SQL);
-			
+
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
-			
+
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) {
-				
+
+			while (rs.next()) {
+
 				Pessoa pessoa = new Pessoa();
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setNome(rs.getString("email"));
 				pessoa.setNome(rs.getString("endereco"));
 				pessoa.setNome(rs.getString("telefone"));
 				pessoas.add(pessoa);
-				
-				
-				
-					
+
 			}
-			
+
 			stmt.close();
 			this.connection.close();
-			
+
 			System.out.println(pessoas);
-			
+
 			return pessoas;
-			
-			
-			
-			
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
