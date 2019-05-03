@@ -21,7 +21,7 @@ public class CadastraUsuarioService {
 	private PessoaDAO dao;
 		
 	
-   public void adicona(Pessoa pessoa){   
+   public void adiciona(Pessoa pessoa){   
 	   this.dao.cadastra(pessoa);	   
    }
 	
@@ -29,6 +29,9 @@ public class CadastraUsuarioService {
    public List<Pessoa> buscaPessoas(){
 	   return this.dao.buscarPessoas();
    }
-
+   
+   public void apagarContato(Pessoa pessoa) {
+	   this.dao.apagarContato(pessoa);
+   }
 
 }

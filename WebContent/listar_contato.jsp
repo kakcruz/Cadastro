@@ -27,27 +27,28 @@
       <table class="table table-bordered">
 		<thead class="thead-dark">
 			<tr>
-				<th scope="col"></th>
-				<th scope="col">Nome</th>
-				<th scope="col">E-mail</th>
-				<th scope="col">Endereço</th>
-				<th scope="col">Telefone</th>
+				<th>Nome</th>
+				<th>E-mail</th>
+				<th>Endereço</th>
+				<th>Telefone</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 		<tbody>
 		
-		<c:forEach var="pessoa" items="${contatos}">
+		<c:forEach var="pessoa" items="${contato}">
 			<tr>
-				<th scope="row">1</th>
-				<td>$(pessoa.nome)</td>
-				<td>$(pessoa.email)</td>
-				<td>$(pessoa.endereco)</td>
-				<td>$(pessoa.telefone)</td>
+				<td>${pessoa.nome}</td>
+				<td>${pessoa.email}</td>
+				<td>${pessoa.endereco}</td>
+				<td>${pessoa.telefone}</td>
+				<td><a class="btn btn-danger" href="apagar-contato">Apagar</a></td>
 			</tr>
 		</c:forEach>
 			
 		</tbody>
 	</table>
+	
 
 	<center><div class="form-group col-md-6">
 		<a class="btn btn-primary" href="index.html">Voltar a pagina inicial</a>

@@ -1,3 +1,4 @@
+
 package com.agenda.dao;
 
 import java.sql.ResultSet;
@@ -58,17 +59,15 @@ public class PessoaDAO {
 
 				Pessoa pessoa = new Pessoa();
 				pessoa.setNome(rs.getString("nome"));
-				pessoa.setNome(rs.getString("email"));
-				pessoa.setNome(rs.getString("endereco"));
-				pessoa.setNome(rs.getString("telefone"));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.setEndereco(rs.getString("endereco"));
+				pessoa.setTelefone(rs.getString("telefone"));
 				pessoas.add(pessoa);
 
 			}
 
 			stmt.close();
 			this.connection.close();
-
-			System.out.println(pessoas);
 
 			return pessoas;
 
@@ -77,4 +76,11 @@ public class PessoaDAO {
 		}
 	}
 
+	
+	public void  apagarContato(Pessoa pessoa) {
+	
+		System.out.println("Metodo APAGAR executado com sucesso");
+	
+}
+	
 }
