@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FaÃ§a seu Cadastro</title>
+<title>Faça seu Cadastro</title>
 <link crossorigin="anonymous"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#"><h2>Cadastre-se</h2></a>
+		<a class="navbar-brand" href="adicona-contato.jsp"><h2>Cadastre-se</h2></a>
 	</nav>
 
 	<div class="container ">
@@ -47,9 +47,9 @@
 						</div>
 
 						<div class="form-group col-md-6">
-							<label for="end">EndereÃ§o</label> <input type="text"
+							<label for="end">Endereço</label> <input type="text"
 								class="form-control" id="end" name="endereco"
-								placeholder="EndereÃ§o">
+								placeholder="Endereço">
 						</div>
 
 						<div class="form-group col-md-6">

@@ -58,6 +58,7 @@ public class PessoaDAO {
 			while (rs.next()) {
 
 				Pessoa pessoa = new Pessoa();
+				pessoa.setId(rs.getLong("id"));
 				pessoa.setNome(rs.getString("nome"));
 				pessoa.setEmail(rs.getString("email"));
 				pessoa.setEndereco(rs.getString("endereco"));
@@ -78,9 +79,20 @@ public class PessoaDAO {
 
 	
 	public void  apagarContato(Pessoa pessoa) {
+		
+		String SQL = "delete from pessoas where id=?";
+		
+		try {
+			this.connection = new ConnectionFactory().getConnection();
+			java.sql.PreparedStatement stmt = connection.prepareStatement(SQL);
+			stmt.setLong(1,pessoa.getId());
+			stmt.execute();
+			stmt.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+			
 	
-		System.out.println("Metodo APAGAR executado com sucesso");
-	
-}
+  }
 	
 }
