@@ -33,5 +33,8 @@ public class CadastraUsuarioService {
    public void apagarContato(Pessoa pessoa) {
 	   this.dao.apagarContato(pessoa);
    }
-
+   
+   public void alterar (Pessoa pessoa) {
+	   this.dao.alterar(pessoa);
+   }
 }

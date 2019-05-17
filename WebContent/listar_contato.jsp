@@ -46,7 +46,11 @@
 				<td>${pessoa.email}</td>
 				<td>${pessoa.endereco}</td>
 				<td>${pessoa.telefone}</td>
-				<td><a class="btn btn-danger" href="apagar-contato?id=${pessoa.id}">Apagar</a></td>
+				<td><a class="btn btn-danger" href="apagar-contato?id=${pessoa.id}">Apagar</a>
+				
+				<a class="btn btn-warning" href="adiciona-contato.jsp?id=${pessoa.id}&nome=${pessoa.nome}&email=${pessoa.email}&endereco=${pessoa.endereco}&telefone=${pessoa.telefone}">Editar</a></td>
+							
+				
 			</tr>
 		</c:forEach>
 			
@@ -59,7 +63,7 @@
 	</div></center>
 	
 	<center><div class="form-group col-md-6">
-		<a class="btn btn-info" href="adiciona-contato.jsp">Fazer um Cadastro</a>
+		<a class="btn btn-info" href="adiciona-contato.jsp">Fazer outro Cadastro</a>
 	</div></center>
 
 

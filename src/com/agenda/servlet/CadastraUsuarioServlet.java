@@ -12,32 +12,43 @@ import com.agenda.service.CadastraUsuarioService;
 
 public class CadastraUsuarioServlet extends HttpServlet {
 	@Override
-	
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+
 		Pessoa pessoa = new Pessoa();
-		
+
+		CadastraUsuarioService service = new CadastraUsuarioService();
+
 		request.getParameter("name");
 		pessoa.setNome(request.getParameter("name"));
-		
+
 		request.getParameter("telefone");
 		pessoa.setTelefone(request.getParameter("telefone"));
-		
+
 		request.getParameter("email");
 		pessoa.setEmail(request.getParameter("email"));
-		
+
 		request.getParameter("endereco");
 		pessoa.setEndereco(request.getParameter("endereco"));
-		
-		CadastraUsuarioService service = new CadastraUsuarioService();
-		
-		service.cadastra(pessoa);
-		
-		
-		response.sendRedirect("busca-contato");
-		
-		
-	}
 
+		try {
+
+			if (null != request.getParameter("id") && !request.getParameter("id").equals("")) {
+
+				service.alterar(pessoa);
+
+				pessoa.setId(Long.parseLong(request.getParameter("id")));
+			} else {
+				service.adiciona(pessoa);
+			}
+
+			response.sendRedirect("busca-contato");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
 }
