@@ -13,22 +13,35 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class PessoaDAO {
 
-	private static final String SQL = null;
+	
+	
 	private Connection connection;
-
+	private PreparedStatement stmt;
+	
+	public PessoaDAO()  {
+		this.connection = new Connection();
+		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(null);
+	}
+	
+	
+	private Connection connection1 = ConnectionFactory.getConnection();
+	private java.sql.PreparedStatement stmt1;
+	
+	
 	public void cadastra(Pessoa pessoa) {
 
 		String SQL = "insert into pessoas (nome, email, endereco, telefone) values(?,?,?,?)";
 
 		try {
-
-			this.connection = new ConnectionFactory().getConnection();
+			this.stmt = (PreparedStatement) this.connection.prepareStatement(SQL)
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
 
+			
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
 			stmt.setString(3, pessoa.getEndereco());
 			stmt.setString(4, pessoa.getTelefone());
+			stmt.setLong(5, pessoa.getId());
 
 			stmt.execute();
 			stmt.close();
@@ -46,10 +59,9 @@ public class PessoaDAO {
 		String SQL = "select * from pessoas";
 
 		try {
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
 
-			this.connection = new ConnectionFactory().getConnection();
-
-			java.sql.PreparedStatement stmt = this.connection.prepareStatement(SQL);
+			
 
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
@@ -83,8 +95,8 @@ public class PessoaDAO {
 		String SQL = "delete from pessoas where id=?";
 		
 		try {
-			this.connection = new ConnectionFactory().getConnection();
-			java.sql.PreparedStatement stmt = connection.prepareStatement(SQL);
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
+			
 			stmt.setLong(1,pessoa.getId());
 			stmt.execute();
 			stmt.close();
@@ -101,8 +113,9 @@ public class PessoaDAO {
 		
 		
 		try {
-			this.connection = new ConnectionFactory().getConnection();
-			java.sql.PreparedStatement stmt = this.connection.prepareStatement(SQL);
+			
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
+			
 			
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
@@ -112,7 +125,7 @@ public class PessoaDAO {
 			stmt.execute();
 			stmt.close();
 		}	catch (Exception e) {
-			// TODO: handle exception
+			throw new RuntimeException(e);
 		}
 	}	
 	

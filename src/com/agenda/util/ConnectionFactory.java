@@ -7,7 +7,7 @@ import com.mysql.jdbc.Connection;
 
 public class ConnectionFactory {
 
-	public Connection getConnection() throws SQLException {
+	public static  Connection getConnection() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			return (Connection) DriverManager.getConnection("jdbc:mysql://localhost/agendabd", "root", "");
