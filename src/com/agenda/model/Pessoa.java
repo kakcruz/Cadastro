@@ -54,7 +54,6 @@ public class Pessoa {
 	}
 
 	public long getId() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 	

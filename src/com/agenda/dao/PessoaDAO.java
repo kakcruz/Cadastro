@@ -1,4 +1,3 @@
-
 package com.agenda.dao;
 
 import java.sql.ResultSet;
@@ -13,35 +12,19 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class PessoaDAO {
 
-	
-	
 	private Connection connection;
-	private PreparedStatement stmt;
-	
-	public PessoaDAO()  {
-		this.connection = new Connection();
-		PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(null);
-	}
-	
-	
-	private Connection connection1 = ConnectionFactory.getConnection();
-	private java.sql.PreparedStatement stmt1;
-	
-	
+
 	public void cadastra(Pessoa pessoa) {
 
 		String SQL = "insert into pessoas (nome, email, endereco, telefone) values(?,?,?,?)";
 
 		try {
-			this.stmt = (PreparedStatement) this.connection.prepareStatement(SQL)
+			this.connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
-
-			
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
 			stmt.setString(3, pessoa.getEndereco());
 			stmt.setString(4, pessoa.getTelefone());
-			stmt.setLong(5, pessoa.getId());
 
 			stmt.execute();
 			stmt.close();
@@ -59,9 +42,8 @@ public class PessoaDAO {
 		String SQL = "select * from pessoas";
 
 		try {
+			this.connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
-
-			
 
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
@@ -89,34 +71,30 @@ public class PessoaDAO {
 		}
 	}
 
-	
-	public void  apagarContato(Pessoa pessoa) {
-		
+	public void apagarContato(Pessoa pessoa) {
+
 		String SQL = "delete from pessoas where id=?";
-		
+
 		try {
+			this.connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
-			
-			stmt.setLong(1,pessoa.getId());
+
+			stmt.setLong(1, pessoa.getId());
 			stmt.execute();
 			stmt.close();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-			
-	
-  }
-	
-	
-	public void alterar (Pessoa pessoa) {
-		String SQL = "update pessoas set" + "nome=?," + "email=?," + "endereco=?," + "telefone=?," + " where id=?";
-		
-		
+
+	}
+
+	public void alterar(Pessoa pessoa) {
+		String SQL = "update pessoas set nome=?, email=?, endereco=?, telefone=? where id=?";
+
 		try {
-			
+			this.connection = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement(SQL);
-			
-			
+
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
 			stmt.setString(3, pessoa.getEndereco());
@@ -124,9 +102,9 @@ public class PessoaDAO {
 			stmt.setLong(5, pessoa.getId());
 			stmt.execute();
 			stmt.close();
-		}	catch (Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}	
-	
+	}
+
 }
